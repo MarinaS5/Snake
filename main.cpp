@@ -1,4 +1,36 @@
-////////////////////////////////////////////////////////////
+#include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
+
+const std::string RESOURSE_PATH = "resources/";
+
+
+int main()
+{
+	sf::RenderWindow window(sf::VideoMode(1024, 1024), "Snake");
+
+	sf::Texture background;
+	if (!background.loadFromFile(RESOURSE_PATH+"Background.png"));
+	{
+		return EXIT_FAILURE;
+	}
+	sf::Sprite background_sprite(background);
+
+	while (window.isOpen())
+	{
+		sf::Event event;
+		while (window.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+				window.close();
+		}
+		window.clear();
+		window.draw(background_sprite);
+		window.display();
+	}
+	return 0;
+}
+
+/*
 // Headers
 ////////////////////////////////////////////////////////////
 #include <SFML/Graphics.hpp>
@@ -250,3 +282,4 @@ int main()
 //   4. Use the Error List window to view errors
 //   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
 //   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+*/
